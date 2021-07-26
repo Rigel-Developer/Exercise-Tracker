@@ -135,7 +135,7 @@ app.get("/api/users/:_id/logs", (req, res) => {
             log: log.map((o) => ({
               description: o.description,
               duration: o.duration,
-              date: moment(o).format("ddd MMMM DD YYYY"),
+              date: new Date(o.date).toDateString(),
             })),
           })
         );
