@@ -96,11 +96,11 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
         userId: _id,
       }).then((ex) =>
         res.status(200).send({
-          username: user.username,
-          description,
-          duration,
           _id: user._id,
+          username: user.username,
           date: moment(ex.date).format("ddd MMMM DD YYYY"),
+          duration,
+          description,
         })
       );
     })
