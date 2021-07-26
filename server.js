@@ -83,9 +83,9 @@ app.get("/api/users", (req, res) => {
 });
 
 app.post("/api/users/:_id/exercises", async (req, res) => {
-  let { description, duration, date } = req.body;
-  let userId = req.params._id;
-  Person.findOne({ _id: userId })
+  let { _id, description, duration, date } = req.body;
+  //let _id = req.params._id;
+  Person.findOne({ _id: _id })
     .then((user) => {
       if (!user) throw new Error("Unknown user with _id");
       date = date || Date.now();
@@ -93,7 +93,7 @@ app.post("/api/users/:_id/exercises", async (req, res) => {
         description,
         duration,
         date,
-        userId,
+        userId: _id,
       }).then((ex) =>
         res.status(200).send({
           username: user.username,
